@@ -34,6 +34,13 @@
                 },
             ]
 
+            function changeImg() {
+                setTimeout(changeImg, 3000)
+                next()
+            }
+
+            let t = setTimeout(changeImg, 3000)
+
             function last() {
                 currentIndex.value--;
                 if (currentIndex.value < 0) {
@@ -49,12 +56,16 @@
             }
 
             return {
+                t,
                 last,
                 next,
                 currentIndex,
                 data,
             }
         },
+        beforeUnmount() {
+            window.clearTimeout(this.t)
+        }
     }
 </script>
 

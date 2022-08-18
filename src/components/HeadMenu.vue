@@ -48,7 +48,7 @@
             window.onscroll = function () {
 
                 let scrollPos = getScrollTop();
-                console.log('scroll', scrollPos)
+                // console.log('scroll', scrollPos)
                 if (scrollPos < 16) {
                     currentBg.value = ' rgba(0, 0, 0, 0)'
                 } else {
