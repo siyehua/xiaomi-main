@@ -1,6 +1,8 @@
 # xiaomi-main
 仿小米首页UI，主要学习的是 CSS 的知识，没有实现点击功能
-### 用到的一些知识点
+## 网页已经部署到：http://43.155.85.224/xiaomi-main/
+
+## 用到的一些知识点
 
 ### block 块元素 水平局中
 处于 div 如果固定了宽度，要想水平局中，可以设置它的 margin
@@ -164,6 +166,31 @@ eslintConfig{
     "eslint:recommended"
 }
 ```
+
+### 打包后资源引用问题
+在本地编译后，默认会生成两个地址，这两个地址都可以直接访问的：
+
+```
+  - Local:   http://localhost:8080/xiaomi-main/ 
+  - Network: http://192.168.10.83:8080/xiaomi-main/
+```
+
+但是如果直接将项目打包，生成的目录是 `dist`，将目录名字改成 `xiaomi-main`, 然后直接部署到服务器。
+<br>假设你服务器的地址是：`http://43.155.85.224`，这个时候资源：css，js，img 都访问不了。
+<br><br><br>举个例子，如果打包好的 `dist` ，图片都放在 `img` 目录下,里面有一个图片叫 `abc.png`,  
+默认的访问路径是：`http://43.155.85.224/img/abc.png` ，这个时候是没有办法找到这个图片的，因为图片的真实路径是：`http://43.155.85.224/xiaomi/img/abc.png`
+
+
+解决思路：
+```
+const { defineConfig } = require('@vue/cli-service')
+module.exports = defineConfig({
+transpileDependencies: true,
+publicPath:'/xiaomi-main/',
+})
+```
+
+`publicPath:'/xiaomi-main/',` 这行是新添加的，表示所有的资源都会添加这个前缀，至此，所有的资源都能正常访问了。
 
 ### Compiles and hot-reloads for development
 ```
