@@ -82,12 +82,6 @@
         color: #ff6900;
     }
 
-    .change {
-        position: absolute;
-        fill: red;
-        background: #42b983;
-    }
-
     .item {
         left: 0;
         position: absolute;

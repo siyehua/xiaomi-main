@@ -49,7 +49,7 @@
 
                 let scrollPos = getScrollTop();
                 console.log('scroll', scrollPos)
-                if (scrollPos < 5) {
+                if (scrollPos < 16) {
                     currentBg.value = ' rgba(0, 0, 0, 0)'
                 } else {
                     currentBg.value = ' rgba(0, 0, 0, .85)'
@@ -66,6 +66,7 @@
 <style scoped>
     .root {
         background-color: rgba(0, 0, 0, .85);
+        transition: background-color 1s;
         position: fixed;
         width: 100%;
         height: 65px;
